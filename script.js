@@ -50,8 +50,6 @@ $(function() {
   const audioSelect = $('#audioSource');
   const videoSelect = $('#videoSource');
   const selectors = [audioSelect, videoSelect];
-  
-  const context = new window.AudioContext();
 
   navigator.mediaDevices.enumerateDevices()
     .then(deviceInfos => {
@@ -99,6 +97,7 @@ $(function() {
       video: {deviceId: videoSource ? {exact: videoSource} : undefined},
     };
 
+    const context = new window.AudioContext();
     navigator.mediaDevices.getUserMedia(constraints).then(stream => {
       $('#my-video').get(0).srcObject = stream;
       localStream = stream;
